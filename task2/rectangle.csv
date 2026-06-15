@@ -1,0 +1,3 @@
+algorithm,input,width,height,input_pixels,skeleton_pixels,iterations,time_ms,components_before,components_after,connectivity_preserved
+ZhangSuen,shapes/thinning_tests/rectangle_thin.pgm,256,256,1395,146,5,0.92891,1,1,yes
+GuoHall,shapes/thinning_tests/rectangle_thin.pgm,256,256,1395,9,78,27.2636,1,1,yes

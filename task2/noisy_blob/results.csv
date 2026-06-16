@@ -1,0 +1,3 @@
+algorithm,input,width,height,input_pixels,skeleton_pixels,iterations,time_ms,components_before,components_after,connectivity_preserved
+ZhangSuen,../shapes/thinning_tests/noisy_blob.pgm,256,256,13085,315,47,35.9714,1,1,yes
+GuoHall,../shapes/thinning_tests/noisy_blob.pgm,256,256,13085,264,77,31.4541,1,1,yes

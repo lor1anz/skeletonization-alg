@@ -1,0 +1,3 @@
+algorithm,input,width,height,input_pixels,skeleton_pixels,iterations,time_ms,components_before,components_after,connectivity_preserved
+ZhangSuen,../shapes/thinning_tests/letter_b.pgm,256,256,18710,422,33,22.7932,1,1,yes
+GuoHall,../shapes/thinning_tests/letter_b.pgm,256,256,18710,438,71,34.3577,1,1,yes

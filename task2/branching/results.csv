@@ -1,0 +1,3 @@
+algorithm,input,width,height,input_pixels,skeleton_pixels,iterations,time_ms,components_before,components_after,connectivity_preserved
+ZhangSuen,../shapes/thinning_tests/branching.pgm,256,256,5485,289,15,9.19525,1,1,yes
+GuoHall,../shapes/thinning_tests/branching.pgm,256,256,5485,257,26,10.7381,1,1,yes

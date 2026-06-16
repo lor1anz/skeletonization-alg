@@ -228,6 +228,38 @@ Image DistanceToImage(const DistanceMap& dist) {
     return out;
 }
 
+Image DistanceLevelsToImage(const Image& binary, const Image& boundary, const DistanceMap& dist, int level_step) {
+    Image out(dist.width, dist.height, 255);
+
+    if (level_step <= 0) {
+        throw std::runtime_error("level_step must be positive");
+    }
+
+    for (int y = 0; y < dist.height; ++y) {
+        for (int x = 0; x < dist.width; ++x) {
+            if (binary(y, x) == 0) {
+                out(y, x) = 255;
+                continue;
+            }
+
+            if (boundary(y, x) != 0) {
+                out(y, x) = 0;
+                continue;
+            }
+
+            const int d = dist(y, x);
+
+            if (d > 0 && d % level_step == 0) {
+                out(y, x) = 0;
+            } else {
+                out(y, x) = 230;
+            }
+        }
+    }
+
+    return out;
+}
+
 Image ExtractSkeletonLocalMaxima(const Image& binary, const DistanceMap& dist) {
     Image skeleton(binary.width, binary.height, 0);
 
@@ -315,17 +347,20 @@ int main(int argc, char** argv) {
         const DistanceMap dist = ComputeDistanceTransform(input, boundary);
         const Image dist_image = DistanceToImage(dist);
         const Image skeleton = ExtractSkeletonLocalMaxima(input, dist);
+        const Image levels = DistanceLevelsToImage(input, boundary, dist, 12);
 
         WritePgm(input, "01_binary.pgm");
         WritePgm(boundary, "02_boundary.pgm");
         WritePgm(dist_image, "03_distance.pgm");
         WritePgm(skeleton, "04_skeleton.pgm");
+        WritePgm(levels, "05_levels.pgm");
 
         std::cout << "Saved:\n";
         std::cout << "  01_binary.pgm\n";
         std::cout << "  02_boundary.pgm\n";
         std::cout << "  03_distance.pgm\n";
         std::cout << "  04_skeleton.pgm\n";
+        std::cout << "  05_levels.pgm\n";
 
         return 0;
     } catch (const std::exception& e) {
